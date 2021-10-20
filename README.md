@@ -19,37 +19,32 @@ git clone https://github.com/Mdk918/api_yamdb.git
 cd api_yamdb
 ```
 
-Cоздать и активировать виртуальное окружение:
 
 ```
-python3 -m venv venv
+Установить докер
 ```
 
-```
-source venv/bin/activate
-```
+Запустить команду:
 
 ```
-python3 -m pip install --upgrade pip
+docker-compose up -d --build 
 ```
-
-Установить зависимости из файла requirements.txt:
-
-```
-pip install -r requirements.txt
-```
-
-Выполнить миграции:
+Выполнить миграции
 
 ```
-python3 manage.py migrate
+docker-compose exec web python manage.py migrate --noinput
+```
+Создать суперпользователя
+
+```
+docker-compose exec web python manage.py createsuperuser
+```
+Подгрузить статику
+
+```
+docker-compose exec web python manage.py collectstatic --no-input
 ```
 
-Запустить проект:
-
-```
-python3 manage.py runserver
-```
 
 Примеры запросов к API:
 
